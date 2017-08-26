@@ -7,6 +7,27 @@ $bets = [
     ['name' => 'Евгений', 'price' => 10500, 'ts' => strtotime('-' . rand(25, 50) .' hour')],
     ['name' => 'Семён', 'price' => 10000, 'ts' => strtotime('last week')]
 ];
+
+function getTime($ts) {
+
+    $time_diff = (time() - $ts) / 3600;
+
+    switch ($time_diff) {
+        case $time_diff >= 24:
+            $bet_time = date('d.m.y' . ' в ' . 'H:i' , $ts);
+            break;
+
+        case $time_diff < 1:
+            $bet_time = date('i' . ' минут назад', $ts);
+            break;
+
+        default:
+            $bet_time = date('H' . ' часов назад', $ts);
+    }
+
+    return $bet_time;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -109,14 +130,19 @@ $bets = [
                 </div>
                 <div class="history">
                     <h3>История ставок (<span>4</span>)</h3>
-                    <!-- заполните эту таблицу данными из массива $bets-->
+
+                    <?php foreach ($bets as $key) : ?>
+
                     <table class="history__list">
                         <tr class="history__item">
-                            <td class="history__name"><!-- имя автора--></td>
-                            <td class="history__price"><!-- цена--> р</td>
-                            <td class="history__time"><!-- дата в человеческом формате--></td>
+                            <td class="history__name"><?= $key['name']; ?></td>
+                            <td class="history__price"><?= $key['price']; ?> р</td>
+                            <td class="history__time"><?= getTime($key['ts']); ?></td>
                         </tr>
                     </table>
+
+                    <?php endforeach; ?>
+
                 </div>
             </div>
         </div>
