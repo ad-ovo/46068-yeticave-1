@@ -1,5 +1,7 @@
 <?php
 
+require_once('data.php');
+
 // ставки пользователей, которыми надо заполнить таблицу
 $bets = [
     ['name' => 'Иван', 'price' => 11500, 'ts' => strtotime('-' . rand(1, 50) .' minute')],
@@ -28,6 +30,19 @@ function getTime($ts) {
     return $bet_time;
 }
 
+if (isset($_GET['id'])) {
+    $lot_item = $_GET['id'];
+} else {
+    $lot_item = 'undefined';
+}
+
+if (!array_key_exists($lot_item, $lots_list)) {
+    /*var_dump(http_response_code());*/
+    header('HTTP/1.0 404 Not Found');
+    echo 'Ошибка 404';
+    die();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +58,7 @@ function getTime($ts) {
 <header class="main-header">
     <div class="main-header__container container">
         <h1 class="visually-hidden">YetiCave</h1>
-        <a class="main-header__logo" href="index.html">
+        <a class="main-header__logo" href="index.php">
             <img src="img/logo.svg" width="160" height="39" alt="Логотип компании YetiCave">
         </a>
         <form class="main-header__search" method="get" action="https://echo.htmlacademy.ru">
@@ -88,13 +103,13 @@ function getTime($ts) {
         </ul>
     </nav>
     <section class="lot-item container">
-        <h2>DC Ply Mens 2016/2017 Snowboard</h2>
+        <h2><?= $lots_list[$lot_item]['name']; ?></h2>
         <div class="lot-item__content">
             <div class="lot-item__left">
                 <div class="lot-item__image">
-                    <img src="img/lot-image.jpg" width="730" height="548" alt="Сноуборд">
+                    <img src="<?= $lots_list[$lot_item]['image']?>" width="730" height="548" alt="<?= $lots_list[$lot_item]['name']; ?>">
                 </div>
-                <p class="lot-item__category">Категория: <span>Доски и лыжи</span></p>
+                <p class="lot-item__category">Категория: <span><?= $lots_list[$lot_item]['category']; ?></span></p>
                 <p class="lot-item__description">Легкий маневренный сноуборд, готовый дать жару в любом парке, растопив
                     снег
                     мощным щелчкоми четкими дугами. Стекловолокно Bi-Ax, уложенное в двух направлениях, наделяет этот
@@ -114,7 +129,7 @@ function getTime($ts) {
                     <div class="lot-item__cost-state">
                         <div class="lot-item__rate">
                             <span class="lot-item__amount">Текущая цена</span>
-                            <span class="lot-item__cost">11 500</span>
+                            <span class="lot-item__cost"><?= $lots_list[$lot_item]['price']; ?></span>
                         </div>
                         <div class="lot-item__min-cost">
                             Мин. ставка <span>12 000 р</span>
