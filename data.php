@@ -1,8 +1,8 @@
 <?php
 
-$is_auth = (bool) rand(0, 1);
-$user_name = 'Константин';
-$user_avatar = 'img/user.jpg';
+//$is_auth = (bool) rand(0, 1);
+//$user_name = 'Константин';
+//$user_avatar = 'img/user.jpg';
 
 // ставки пользователей, которыми надо заполнить таблицу
 $bets = [

@@ -105,10 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
             'nav' => $nav,
             'template_content' => $template_content,
             'title' => $title,
-            'index_page' => $index_page,
-            'is_auth' => $is_auth,
-            'user_name' => $user_name,
-            'user_avatar' => $user_avatar
+            'index_page' => $index_page
         ];
 
         $template_layout = renderTemplate('templates/global/layout.php', $template_layout_data);
@@ -119,9 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
         $template_content_data = [
             'nav' => $nav,
             'lot_category' => $lot_category,
-            'lot_item' => $lot_item,
-            'add_lot_error' => $add_lot_error,
-            'add_lot_error_message' => $add_lot_error_message,
             'lot_item' => $lot_item
         ];
 
@@ -131,10 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST') {
             'nav' => $nav,
             'template_content' => $template_content,
             'title' => $title,
-            'index_page' => $index_page,
-            'is_auth' => $is_auth,
-            'user_name' => $user_name,
-            'user_avatar' => $user_avatar
+            'index_page' => $index_page
         ];
 
         $template_layout = renderTemplate('templates/global/layout.php', $template_layout_data);
@@ -156,10 +147,7 @@ $template_layout_data = [
     'nav' => $nav,
     'template_content' => $template_content,
     'title' => $title,
-    'index_page' => $index_page,
-    'is_auth' => $is_auth,
-    'user_name' => $user_name,
-    'user_avatar' => $user_avatar
+    'index_page' => $index_page
 ];
 
 $template_layout = renderTemplate('templates/global/layout.php', $template_layout_data);

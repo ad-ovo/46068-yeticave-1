@@ -30,10 +30,7 @@ $template_layout_data = [
     'nav' => $nav,
     'template_content' => $template_content,
     'title' => $title,
-    'index_page' => $index_page,
-    'is_auth' => $is_auth,
-    'user_name' => $user_name,
-    'user_avatar' => $user_avatar
+    'index_page' => $index_page
 ];
 
 $template_layout = renderTemplate('templates/global/layout.php', $template_layout_data);
